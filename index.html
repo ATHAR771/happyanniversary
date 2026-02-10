@@ -90,7 +90,7 @@ p{max-width:600px;font-size:1.05em;line-height:1.7;margin-bottom:20px;}
   gap:14px;
 }
 
-/* ===== SLIDER ===== */
+/* SLIDER */
 .slider{
   width:90%;
   max-width:320px;
@@ -157,7 +157,8 @@ p{max-width:600px;font-size:1.05em;line-height:1.7;margin-bottom:20px;}
   <p>
     Kakak Asha, makasih ya masih mau pegang tanganku.<br>
     4 bulan ini ngajarin aku kalau cinta itu bukan tentang sempurna,
-    tapi tentang memilih lagi, setiap hari. Kakak ngajarin aku banyak hal tentang apapun itu, belajar utbk bareng... i love that.
+    tapi tentang memilih lagi, setiap hari. 🤍
+    Kakak ngajarin aku banyak hal tentang apapun itu, belajar utbk bareng... i love that.
     We did so much thing together n i love every second of it.
     We play minecraft together... oh my i miss those moments so much...
     We named a kitty in minecraft from ur name. "Asha<3"
@@ -167,20 +168,23 @@ p{max-width:600px;font-size:1.05em;line-height:1.7;margin-bottom:20px;}
     Bareng bareng kita di kampus UI, kampus impian kita berdua.
     Maaf aku belum sempet ngasih kakak bunga... jadi bikin ini aja <3<br>
     Run to me when the world feels heavy, okay? 🤍
+    And here's our cute pic when playing minecraft🥺🤍
 
   </p>
 
-  <!-- SLIDER -->
   <div class="slider">
     <div class="slides" id="slides">
-      <img src="photo1.jpeg">
-      <img src="photo2.jpeg">
-      <img src="photo3.jpeg">
-      <img src="photo4.jpeg">
+      <img src="photo1.jpg">
+      <img src="photo2.jpg">
+      <img src="photo3.jpg">
+      <img src="photo4.jpg">
+      <img src="photo5.jpg">
     </div>
   </div>
+
   <div class="slider-nav" id="dots">
     <span class="active"></span>
+    <span></span>
     <span></span>
     <span></span>
     <span></span>
@@ -241,7 +245,6 @@ function showLove(){
   document.getElementById("loveText").style.display="block";
 }
 
-/* HEARTS */
 for(let i=0;i<20;i++){
   const h=document.createElement("div");
   h.className="heart";
@@ -251,11 +254,10 @@ for(let i=0;i<20;i++){
   document.querySelector(".hearts").appendChild(h);
 }
 
-/* SLIDER LOGIC (4 FOTO) */
+/* SLIDER */
 const slides=document.getElementById("slides");
 const dots=document.querySelectorAll("#dots span");
-let index=0;
-let startX=0;
+let index=0,startX=0;
 
 function showSlide(i){
   index=i;
@@ -264,13 +266,10 @@ function showSlide(i){
   dots[i].classList.add("active");
 }
 
-slides.addEventListener("touchstart",e=>{
-  startX=e.touches[0].clientX;
-});
-
+slides.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
 slides.addEventListener("touchend",e=>{
   let endX=e.changedTouches[0].clientX;
-  if(startX-endX>50 && index<3) showSlide(index+1);
+  if(startX-endX>50 && index<4) showSlide(index+1);
   if(endX-startX>50 && index>0) showSlide(index-1);
 });
 </script>
