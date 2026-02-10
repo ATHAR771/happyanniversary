@@ -88,6 +88,14 @@ p{max-width:600px;font-size:1.05em;line-height:1.7;margin-bottom:20px;}
   from{top:-10%;}
   to{top:110%;transform:rotate(45deg) translateX(40px);}
 }
+
+/* jarak tombol */
+.choice-wrap{
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
 </style>
 </head>
 
@@ -98,7 +106,7 @@ p{max-width:600px;font-size:1.05em;line-height:1.7;margin-bottom:20px;}
 <section class="fade">
   <h1>Happy 4 Months, Asha 💐</h1>
   <p>still choosing you, every single day.</p>
-  <button class="btn" onclick="scrollToSection(1)">Start our little story →</button>
+  <button class="btn" id="startBtn">Start our little story →</button>
 </section>
 
 <section class="fade">
@@ -129,15 +137,14 @@ p{max-width:600px;font-size:1.05em;line-height:1.7;margin-bottom:20px;}
     tapi tentang memilih lagi, setiap hari.
   </p>
 
-  <button class="btn" onclick="showLove()">Hug me 🐻</button>
-  <button class="btn" style="background:#6fa8ff" onclick="showLove()">Still mine 💗</button>
+  <div class="choice-wrap">
+    <button class="btn" onclick="showLove()">Hug me 🐻</button>
+    <button class="btn" style="background:#6fa8ff" onclick="showLove()">Still mine 💗</button>
+  </div>
 
   <p id="loveText" style="display:none;margin-top:20px;font-weight:500;">
     Yeay! Let’s make more memories together 💖
   </p>
-
-  <br><br>
-  <button class="btn" onclick="playMusic()">Play music ♫</button>
 </section>
 
 <audio id="music" loop>
@@ -146,6 +153,8 @@ p{max-width:600px;font-size:1.05em;line-height:1.7;margin-bottom:20px;}
 
 <script>
 const sections=document.querySelectorAll(".fade");
+const music=document.getElementById("music");
+const startBtn=document.getElementById("startBtn");
 
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
@@ -154,16 +163,18 @@ const observer=new IntersectionObserver(entries=>{
 });
 sections.forEach(s=>observer.observe(s));
 
+startBtn.addEventListener("click",()=>{
+  music.play();
+  scrollToSection(1);
+  startBtn.style.display="none";
+});
+
 function scrollToSection(i){
   document.querySelectorAll("section")[i].scrollIntoView({behavior:"smooth"});
 }
 
 function showLove(){
   document.getElementById("loveText").style.display="block";
-}
-
-function playMusic(){
-  document.getElementById("music").play();
 }
 
 for(let i=0;i<20;i++){
