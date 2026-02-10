@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy 4 Months, Asha 💙</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif;}
+body{
+  background:linear-gradient(135deg,#ffd6e8,#d9f0ff);
+  color:#333;
+  text-align:center;
+  overflow-x:hidden;
+}
+section{
+  min-height:100vh;
+  padding:60px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+h1{font-size:2.4em;margin-bottom:10px;}
+h2{font-size:1.8em;margin-bottom:20px;}
+p{max-width:600px;font-size:1.05em;line-height:1.7;margin-bottom:20px;}
+
+.btn{
+  background:#ff7aa2;
+  color:white;
+  border:none;
+  padding:14px 28px;
+  border-radius:30px;
+  font-size:1em;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+.btn:hover{transform:scale(1.05);background:#ff5c8a;}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  width:260px;
+  margin:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  animation:float 4s ease-in-out infinite;
+}
+
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+
+.fade{opacity:0;transform:translateY(40px);transition:1s;}
+.show{opacity:1;transform:translateY(0);}
+
+.hearts{
+  position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;
+}
+.heart{
+  position:absolute;
+  width:20px;height:20px;
+  background:#ff7aa2;
+  transform:rotate(45deg);
+  animation:fall 6s linear infinite;
+}
+.heart:before,.heart:after{
+  content:"";
+  position:absolute;
+  width:20px;height:20px;
+  background:#ff7aa2;
+  border-radius:50%;
+}
+.heart:before{top:-10px;left:0;}
+.heart:after{left:-10px;top:0;}
+
+@keyframes fall{
+  from{top:-10%;}
+  to{top:110%;transform:rotate(45deg) translateX(40px);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts"></div>
+
+<section class="fade">
+  <h1>Happy 4 Months, Asha 💐</h1>
+  <p>still choosing you, every single day.</p>
+  <button class="btn" onclick="scrollToSection(1)">Start our little story →</button>
+</section>
+
+<section class="fade">
+  <h2>Our Little Timeline</h2>
+  <div class="cards">
+    <div class="card">Day 1 💓<br><small>Aku deg-degan tapi sok cool</small></div>
+    <div class="card">Month 1 😅<br><small>Mulai nyaman, mulai ribut juga</small></div>
+    <div class="card">Month 3 🌧️<br><small>Kita jatuh, tapi belajar lagi</small></div>
+    <div class="card">Month 4 💙<br><small>Dan sekarang… kita masih bareng</small></div>
+  </div>
+</section>
+
+<section class="fade">
+  <h2>Why I Still Choose You</h2>
+  <p>
+    Kamu bikin aku ketawa pas lagi capek.<br>
+    Kamu ngajarin aku jadi happy puppy 🐶<br>
+    Kamu sabar walau aku kadang nyebelin.<br>
+    Kamu rumah, walau kadang ribut.
+  </p>
+</section>
+
+<section class="fade">
+  <h2>For You</h2>
+  <p>
+    Asha, makasih ya masih mau pegang tanganku.<br>
+    4 bulan ini ngajarin aku kalau cinta itu bukan tentang sempurna,<br>
+    tapi tentang memilih lagi, setiap hari.
+  </p>
+
+  <button class="btn" onclick="showLove()">Hug me 🐻</button>
+  <button class="btn" style="background:#6fa8ff" onclick="showLove()">Still mine 💗</button>
+
+  <p id="loveText" style="display:none;margin-top:20px;font-weight:500;">
+    Yeay! Let’s make more memories together 💖
+  </p>
+
+  <br><br>
+  <button class="btn" onclick="playMusic()">Play music ♫</button>
+</section>
+
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const sections=document.querySelectorAll(".fade");
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add("show");
+  });
+});
+sections.forEach(s=>observer.observe(s));
+
+function scrollToSection(i){
+  document.querySelectorAll("section")[i].scrollIntoView({behavior:"smooth"});
+}
+
+function showLove(){
+  document.getElementById("loveText").style.display="block";
+}
+
+function playMusic(){
+  document.getElementById("music").play();
+}
+
+for(let i=0;i<20;i++){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDelay=Math.random()*5+"s";
+  h.style.opacity=Math.random();
+  document.querySelector(".hearts").appendChild(h);
+}
+</script>
+
+</body>
+</html>
